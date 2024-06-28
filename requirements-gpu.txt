@@ -1,0 +1,8 @@
+--extra-index-url https://download.pytorch.org/whl/cu121
+torch
+torchvision
+torchaudio
+
+ultralytics==8.2.45
+
+-r requirements.txt

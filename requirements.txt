@@ -1,1 +1,11 @@
-ultralytics==8.2.45
+# NumPy: Fundamental package for array computing with Python
+numpy==1.26.4
+
+# Matplotlib: Comprehensive library for creating static, animated, and interactive visualizations in Python
+matplotlib==3.9.0
+
+# Pandas: Powerful data structures for data analysis, time series, and statistics
+pandas==2.2.2
+
+# Pillow: Python Imaging Library (PIL) fork, adding image processing capabilities
+pillow==10.3.0

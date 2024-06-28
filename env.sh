@@ -47,7 +47,7 @@ main() {
         echo "Failed to activate virtual environment $VENV_NAME. Please activate it manually."
         return 1
     fi
-
+    
     echo "Virtual environment $VENV_NAME is ready and activated."
 }
 

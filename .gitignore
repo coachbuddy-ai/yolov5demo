@@ -162,5 +162,6 @@ cython_debug/
 #.idea/
 
 *.pt
-*.txt
 runs
+train_model_error.txt
+train_model_output.txt

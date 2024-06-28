@@ -9,7 +9,8 @@
 
 # Function to display usage
 usage() {
-    echo "Usage: $0 -u USERNAME -v VENV_NAME -d DATA_YAML_FILE [-e EPOCHS] [-b BATCH_SIZE] [-m MODEL] [-r REQUIRED_MEMORY] [-p SCRIPT_DIR]"
+    echo "Usage: $0 -u USERNAME -v VENV_NAME -d DATA_YAML_FILE [-e EPOCHS] [-b BATCH_SIZE] [-m MODEL] [-r REQUIRED_MEMORY] [-p SCRIPT_DIR] [-t DEVICE_TYPE]"
+    echo "   or: $0 --username USERNAME --venv VENV_NAME --data DATA_YAML_FILE [--epochs EPOCHS] [--batch-size BATCH_SIZE] [--model MODEL] [--memory REQUIRED_MEMORY] [--script-dir SCRIPT_DIR] [--device DEVICE_TYPE]"
     exit 1
 }
 
@@ -18,19 +19,26 @@ EPOCHS=50
 BATCH_SIZE=16
 MODEL="yolov5s.yaml"
 REQUIRED_MEMORY=24
+DEVICE_TYPE="GPU"
 
 # Parse command-line arguments
-while getopts "u:v:d:e:b:m:r:p:" opt; do
-    case "${opt}" in
-        u) USERNAME=${OPTARG} ;;
-        v) VENV_NAME=${OPTARG} ;;
-        d) DATA_YAML_FILE=${OPTARG} ;;
-        e) EPOCHS=${OPTARG} ;;
-        b) BATCH_SIZE=${OPTARG} ;;
-        m) MODEL=${OPTARG} ;;
-        r) REQUIRED_MEMORY=${OPTARG} ;;
-        p) SCRIPT_DIR=${OPTARG} ;;
-        *) usage ;;
+OPTS=$(getopt -o u:v:d:e:b:m:r:p:t: --long username:,venv:,data:,epochs:,batch-size:,model:,memory:,script-dir:,device: -- "$@")
+if [ $? != 0 ] ; then usage ; fi
+eval set -- "$OPTS"
+
+while true; do
+    case "$1" in
+        -u | --username ) USERNAME=$2; shift 2 ;;
+        -v | --venv ) VENV_NAME=$2; shift 2 ;;
+        -d | --data ) DATA_YAML_FILE=$2; shift 2 ;;
+        -e | --epochs ) EPOCHS=$2; shift 2 ;;
+        -b | --batch-size ) BATCH_SIZE=$2; shift 2 ;;
+        -m | --model ) MODEL=$2; shift 2 ;;
+        -r | --memory ) REQUIRED_MEMORY=$2; shift 2 ;;
+        -p | --script-dir ) SCRIPT_DIR=$2; shift 2 ;;
+        -t | --device ) DEVICE_TYPE=$2; shift 2 ;;
+        -- ) shift; break ;;
+        * ) break ;;
     esac
 done
 
@@ -58,6 +66,7 @@ fi
 # Export variables for use in sourced scripts
 export USERNAME
 export VENV_NAME
+export DEVICE_TYPE
 
 # Set the working directory
 cd "${SCRIPT_DIR}" || exit 1
