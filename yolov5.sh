@@ -9,7 +9,7 @@
 
 # Function to display usage
 usage() {
-    echo "Usage: $0 -a VENV_ACTIVATE_PATH -d DATA_YAML_FILE [-e EPOCHS] [-b BATCH_SIZE] [-m MODEL] [-r REQUIRED_MEMORY] [-p SCRIPT_DIR]"
+    echo "Usage: $0 -u USERNAME -v VENV_NAME -d DATA_YAML_FILE [-e EPOCHS] [-b BATCH_SIZE] [-m MODEL] [-r REQUIRED_MEMORY] [-p SCRIPT_DIR]"
     exit 1
 }
 
@@ -18,12 +18,12 @@ EPOCHS=50
 BATCH_SIZE=16
 MODEL="yolov5s"
 REQUIRED_MEMORY="24G"
-SCRIPT_DIR=""
 
 # Parse command-line arguments
-while getopts "a:d:e:b:m:r:p:" opt; do
+while getopts "u:v:d:e:b:m:r:p:" opt; do
     case "${opt}" in
-        a) VENV_ACTIVATE_PATH=${OPTARG} ;;
+        u) USERNAME=${OPTARG} ;;
+        v) VENV_NAME=${OPTARG} ;;
         d) DATA_YAML_FILE=${OPTARG} ;;
         e) EPOCHS=${OPTARG} ;;
         b) BATCH_SIZE=${OPTARG} ;;
@@ -35,35 +35,50 @@ while getopts "a:d:e:b:m:r:p:" opt; do
 done
 
 # Check mandatory arguments
-# Check if VENV_ACTIVATE_PATH is provided
-if [[ -z "${VENV_ACTIVATE_PATH}" ]]; then
-    echo "Error: virtual environment activation path is required."
+if [[ -z "${USERNAME}" ]]; then
+    echo "Error: username is required."
     usage
 fi
 
-# Check if DATA_YAML_FILE is provided
+if [[ -z "${VENV_NAME}" ]]; then
+    echo "Error: virtual environment name is required."
+    usage
+fi
+
 if [[ -z "${DATA_YAML_FILE}" ]]; then
     echo "Error: data.yaml is required."
     usage
 fi
 
-# Check if SCRIPT_DIR is provided
 if [[ -z "${SCRIPT_DIR}" ]]; then
     echo "Error: current working directory is required."
     usage
 fi
 
-
-# Activate the Python environment
-source "${VENV_ACTIVATE_PATH}"
-
-# Check if SCRIPT_DIR is provided and set the working directory
-if [[ -n "${SCRIPT_DIR}" ]]; then
-    cd "${SCRIPT_DIR}" || exit 1
-fi
-
+# Set the working directory
+cd "${SCRIPT_DIR}" || exit 1
 
 echo "Working directory: $(pwd)"
 
-# Run the Python script with the specified arguments
-# python3 yolov5.py --data ${DATA_YAML_FILE} --epochs ${EPOCHS} --batch ${BATCH_SIZE} --model ${MODEL} --required_memory ${REQUIRED_MEMORY}
+# Echo the username to verify it was passed correctly
+echo "Username: ${USERNAME}"
+echo "Envname: ${VENV_NAME}"
+
+# Debugging: Check if env.sh exists and is executable
+if [[ ! -f "env.sh" ]]; then
+    echo "Error: env.sh not found in the current directory."
+    exit 1
+fi
+
+# Activate the Python environment using env.sh
+source env.sh -u "${USERNAME}" -v "${VENV_NAME}"
+
+# Check if the virtual environment is activated
+if [ -z "$VIRTUAL_ENV" ]; then
+    echo "Error: virtual environment activation failed."
+    exit 1
+fi
+
+
+# # Run the Python script with the specified arguments
+# python3 yolov5.py --data "${DATA_YAML_FILE}" --epochs "${EPOCHS}" --batch "${BATCH_SIZE}" --model "${MODEL}" --required_memory "${REQUIRED_MEMORY}"

@@ -1,1 +1,6 @@
 Working directory: /home/srikanth/projects/yolov5demo
+Username: srikanth
+Envname: yolov5demo
+Username (-u) is required.
+Usage: source /var/lib/slurm/slurmd/job00351/slurm_script -u <username> -v <env_name>
+Example: source /var/lib/slurm/slurmd/job00351/slurm_script -u srikanth -v yolov5demo
