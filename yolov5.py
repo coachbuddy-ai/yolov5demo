@@ -37,7 +37,7 @@ def get_value():
         elif opt == '--batch':
             batch = int(arg)
         elif opt == '--model':
-            model = int(arg)
+            model = str(arg)
         elif opt == '--required_memory':
             required_memory = int(arg)
 

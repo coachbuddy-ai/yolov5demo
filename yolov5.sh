@@ -16,8 +16,8 @@ usage() {
 # Default values
 EPOCHS=50
 BATCH_SIZE=16
-MODEL="yolov5s"
-REQUIRED_MEMORY="24G"
+MODEL="yolov5s.yaml"
+REQUIRED_MEMORY=24
 
 # Parse command-line arguments
 while getopts "u:v:d:e:b:m:r:p:" opt; do
@@ -55,6 +55,10 @@ if [[ -z "${SCRIPT_DIR}" ]]; then
     usage
 fi
 
+# Export variables for use in sourced scripts
+export USERNAME
+export VENV_NAME
+
 # Set the working directory
 cd "${SCRIPT_DIR}" || exit 1
 
@@ -70,8 +74,8 @@ if [[ ! -f "env.sh" ]]; then
     exit 1
 fi
 
-# Activate the Python environment using env.sh
-source env.sh -u "${USERNAME}" -v "${VENV_NAME}"
+# Source env.sh
+source env.sh
 
 # Check if the virtual environment is activated
 if [ -z "$VIRTUAL_ENV" ]; then
@@ -79,6 +83,5 @@ if [ -z "$VIRTUAL_ENV" ]; then
     exit 1
 fi
 
-
-# # Run the Python script with the specified arguments
-# python3 yolov5.py --data "${DATA_YAML_FILE}" --epochs "${EPOCHS}" --batch "${BATCH_SIZE}" --model "${MODEL}" --required_memory "${REQUIRED_MEMORY}"
+# Run the Python script with the specified arguments
+python3 yolov5.py --data "${DATA_YAML_FILE}" --epochs "${EPOCHS}" --batch "${BATCH_SIZE}" --model "${MODEL}" --required_memory "${REQUIRED_MEMORY}"
