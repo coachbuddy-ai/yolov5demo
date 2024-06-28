@@ -11,8 +11,8 @@
 **OR**<br/>
 **RUN** `chmod +x scripts/store_password.sh`<br/>
 **THEN** `./scripts/store_password.sh`<br/>
-this will prompt `Enter your sudo password:` enetr the `password for sudo` and press `enter`<br/>
-then it will prompt `Enter passphrase:` enetr then `passphrase` and press `enter`<br/>
+this will prompt `Enter your sudo password:` enter the `password for sudo` and press `enter`<br/>
+then it will prompt `Enter passphrase:` enter then `passphrase` and press `enter`<br/>
 
 **EXAMPLE:**    
 Enter your sudo password: `abc@123`<br/>
