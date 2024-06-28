@@ -35,11 +35,11 @@ Enter passphrase: `yolov5`
 `sbatch scripts/yolov5.sh --username abcde --venv yolov5-demo --data /home/abcde/dataset/data.yaml --script-dir /home/abcde/yolov5-demo`
 
 ### 5. Arguments 
-* `--username` or `-u`: takes the machine username. e.g. abcde
-* `--venv` or `-v`: name of virtual env to be created or already exist. e.g. yolov5-demo
-* `--data` or `-d`: .yaml file path which contains information of data for training/validate/predict(test) dataset. e.g. /path/to/data.yaml
-* `--script-dir` or `-s`: project path current working directory. e.g. /path/to/yolov5-demo
-* `--passphrase` or `-p`: passphrase for the password stored. e.g. yolov5
+* `--username` or `-u`: takes the machine username (mandatory). e.g. abcde
+* `--venv` or `-v`: name of virtual env to be created or already exist(mandatory). e.g. yolov5-demo
+* `--data` or `-d`: .yaml file path which contains information of data for training/validate/predict(test) dataset(mandatory). e.g. /path/to/data.yaml
+* `--script-dir` or `-s`: project path current working directory(mandatory). e.g. /path/to/yolov5-demo
+* `--passphrase` or `-p`: passphrase for the password stored(mandatory). e.g. yolov5
 * `--epochs` or `-e`: number of epochs, `default is 50 epochs`
 * `--batch-size` or `-b`: number of batch, `default is 15 epochs`
 * `--model` or `-m`: type of model pre-trained, .yaml, `default is "yolov5s.yaml"`. e.g. "yolov5xu.pt"
