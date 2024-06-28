@@ -1,0 +1,1 @@
+Working directory: /home/srikanth/projects/yolov5demo
