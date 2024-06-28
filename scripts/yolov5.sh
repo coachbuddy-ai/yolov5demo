@@ -9,8 +9,8 @@
 
 # Function to display usage
 usage() {
-    echo "Usage: $0 -u USERNAME -v VENV_NAME -d DATA_YAML_FILE [-e EPOCHS] [-b BATCH_SIZE] [-m MODEL] [-r REQUIRED_MEMORY] [-s SCRIPT_DIR] [-t DEVICE_TYPE] [-p PASSPHRASE] [--train] [--test] [--validate]"
-    echo "   or: $0 --username USERNAME --venv VENV_NAME --data DATA_YAML_FILE [--epochs EPOCHS] [--batch-size BATCH_SIZE] [--model MODEL] [--memory REQUIRED_MEMORY] [--script-dir SCRIPT_DIR] [--device DEVICE_TYPE] [--passphrase PASSPHRASE] [--train] [--test] [--validate]"
+    echo "Usage: $0 -u USERNAME -v VENV_NAME -d DATA_YAML_FILE -s SCRIPT_DIR -p PASSPHRASE [-e EPOCHS] [-b BATCH_SIZE] [-m MODEL] [-r REQUIRED_MEMORY] [-t DEVICE_TYPE] [--train] [--predict] [--validate]"
+    echo "   or: $0 --username USERNAME --venv VENV_NAME --data DATA_YAML_FILE --script-dir SCRIPT_DIR --passphrase PASSPHRASE [--epochs EPOCHS] [--batch-size BATCH_SIZE] [--model MODEL] [--memory REQUIRED_MEMORY] [--device DEVICE_TYPE] [--train] [--predict] [--validate]"
     exit 1
 }
 
