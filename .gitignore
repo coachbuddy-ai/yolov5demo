@@ -162,6 +162,7 @@ cython_debug/
 #.idea/
 
 *.pt
+*.gpg
 runs
 train_model_error.txt
 train_model_output.txt
