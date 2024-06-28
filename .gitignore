@@ -164,5 +164,5 @@ cython_debug/
 *.pt
 *.gpg
 runs
-train_model_error.txt
-train_model_output.txt
+*train_model_error.txt
+*train_model_output.txt

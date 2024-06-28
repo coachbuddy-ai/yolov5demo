@@ -43,7 +43,7 @@ def get_value():
         elif opt == '--required_memory':
             required_memory = int(arg)
         elif opt == '--mode':
-            model = str(arg)
+            mode = str(arg)
 
     # Check if data is provided
     if data is None:
@@ -52,16 +52,19 @@ def get_value():
         sys.exit(2)
     return data, epochs, batch, model, required_memory, mode
 
-def process_operation(key, model):
+def process_operation(key, model_):
     if key == 'train':
+        model = YOLO(model_)
         model.train(data=data, epochs=epochs, batch=batch, device=device)
         # Perform training operations
         print("Training...")
     elif key == 'validate':
+        model = YOLO(model_)
         # Perform validation operations
         print("Validating...")
         model.val(data=data, batch=batch, device=device)
     elif key == 'predict':
+        model = YOLO(model_)
         # Perform prediction operations
         print("predict not implemented")
 
@@ -71,7 +74,6 @@ if __name__ == "__main__":
     # GPU management and YOLO model training
     gpum = GPUManager(required_memory)
     device = gpum.get_device()
-
-    model = YOLO(model_)
-    process_operation(mode, model)
+    print(mode)
+    process_operation(str(mode), model_)
 

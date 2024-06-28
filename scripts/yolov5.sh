@@ -78,7 +78,7 @@ export USERNAME
 export VENV_NAME
 export DEVICE_TYPE
 export PASSPHRASE
-
+echo "${SCRIPT_DIR}"
 # Set the working directory
 cd "${SCRIPT_DIR}" || exit 1
 
