@@ -41,7 +41,7 @@ Enter passphrase: `yolov5`
 * `--script-dir` or `-s`: project path current working directory `(mandatory)`. e.g. /path/to/yolov5-demo
 * `--passphrase` or `-p`: passphrase for the password stored `(mandatory)`. e.g. yolov5
 * `--epochs` or `-e`: number of epochs, `default is 50 epochs`
-* `--batch-size` or `-b`: number of batch, `default is 15 epochs`
+* `--batch-size` or `-b`: number of batch, `default is 16 batch`
 * `--model` or `-m`: type of model pre-trained, .yaml, `default is "yolov5s.yaml"`. e.g. "yolov5xu.pt"
 * `--memory` or `-r`: memory required for running your process, based on which GPU/CPU will be selected, `default is 24`GB.
 * `--device` or `-t`: type of device `GPU` or `CPU`, `default is GPU`.
